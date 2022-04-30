@@ -18,6 +18,7 @@ The below are notes belonging to you
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>Created</th>
             <th>Title</th>
             <th>Content</th>
         </tr>
@@ -25,7 +26,8 @@ The below are notes belonging to you
     <tbody></tbody>
     <% for (note of notes) {
          %>
-      <tr class="mb-2"> 
+      <tr> 
+        <td><%= note.createdAt %></td>
         <td><%= note.title %></td>
         <td><%= note.content %></td>
     </tr>
