@@ -115,7 +115,13 @@ app.get("/about", (req, res, next) => {
   res.render("about");
 });
 
-app.get("/cpa02", (req, res, next) => {
+app.get("/cpa02", isLoggedIn, async (req,res,next) => {
+  const {subject} = req.body;
+  const notes = await Notes.find({userId: res.locals.user._id})
+  
+  res.locals.notes = notes
+  //res.locals.times2str = times2str //part 3.d. remove res locals time2str 
+  //res.json(courses)
   res.render("cpa02");
 });
 
