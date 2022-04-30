@@ -21,6 +21,7 @@ const axios = require("axios")
 const ToDoItem = require("./models/ToDoItem")
 const Course = require('./models/Course')
 const Schedule = require('./models/Schedule')
+const Notes = require('./models/Notes')
 
 // *********************************************************** //
 //  Loading JSON datasets
@@ -113,6 +114,28 @@ app.get("/", (req, res, next) => {
 app.get("/about", (req, res, next) => {
   res.render("about");
 });
+
+app.get("/cpa02", (req, res, next) => {
+  res.render("cpa02");
+});
+
+app.post('/notes/add',
+  isLoggedIn,
+  // show courses taught by a faculty send from a form
+  async (req,res,next) => {
+    try{
+      const {title,content} = req.body; // get title and description from the body
+      const userId = res.locals.user._id; // get the user's id
+      const createdAt = new Date(); // get the current date/time
+      let data = {title, content, userId, createdAt,} // create the data object
+      let item = new Notes(data) // create the database object (and test the types are correct)
+      await item.save() // save the todo item in the database
+      res.redirect('/cpa02')  // go back to the todo page
+    } catch (e){
+      next(e);
+    }
+  }
+)
 
 
 
