@@ -427,7 +427,7 @@ const port = "5000";
 const http = require("http");
 const server = http.createServer(app);
 
-//server.listen(port);
+server.listen(process.env.PORT || 5000);
 
 function onListening() {
   var addr = server.address();
