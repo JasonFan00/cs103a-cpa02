@@ -150,7 +150,7 @@ app.post('/notes/filter/title',
       
       const results = []
       for (let i = 0; i < notes.length; i++) {
-        if (notes[i].title.includes(filterStr)) {
+        if (notes[i].title.toLowerCase().includes(filterStr.toLowerCase())) {
           results.push(notes[i])
         }
       }
@@ -176,7 +176,7 @@ app.post('/notes/filter/content',
       
       const results = []
       for (let i = 0; i < notes.length; i++) {
-        if (notes[i].content.includes(filterStr)) {
+        if (notes[i].content.toLowerCase().includes(filterStr.toLowerCase())) {
           results.push(notes[i])
         }
       }
