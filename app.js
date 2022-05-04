@@ -139,6 +139,31 @@ app.post('/notes/add',
   }
 )
 
+app.post('/notes/filter',
+  isLoggedIn,
+  // show courses taught by a faculty send from a form
+  async (req,res,next) => {
+    try{
+      const notes = await Notes.find({userId: res.locals.user._id})
+      const {str} = req.body; // get title and description from the body
+      const userId = res.locals.user._id; // get the user's id
+      
+      const results = []
+      for (let i = 0; i < notes.length; i++) {
+        if (notes[i].title.includes(str)) {
+          results.append(notes[i])
+        }
+      }
+
+      res.locals.notes = results
+      
+      res.render("index");  // go back to the todo page
+    } catch (e){
+      next(e);
+    }
+  }
+)
+
 
 
 /*
