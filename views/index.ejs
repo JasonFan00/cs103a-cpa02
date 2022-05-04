@@ -1,41 +1,42 @@
 
+<p class="p-3 m-3 border border-primary bg-light">
+    This CPA is a simple note taking app.  Login to join.
+</p>
 
-    <div class="jumbotron">
-        <h1>PA03: Course Finder Fall20-Spr21 </h1>
-        <p></p>
-    </div>
-
-    <p class="p-3 m-3 border border-primary bg-light">
-        The goal of this assignment is to write an app that will let
-        students pick their courses for the year. Since we don't have 
-        the data for this year (due to workday issues), we will use the 
-        2020-2021 Academic year data. You must signup or login to see
-        the courses and create your schedule.
-    </p>
-    
-    <% if (true || loggedIn) {%>  
-        <form method="post" action="/courses/bySubject">
-            Show Courses by Subject: 
-              <input type="text" name="subject" 
-                     placeholder="e.g. COSI">
-            <input type="submit">
-        </form>
-        <br>
-        <form method="post" action="/courses/byInst">
-            Show Courses by Instructor Email: 
-            <input type="text" name="email" 
-                   placeholder="e.g. tjhickey">
-            <input type="submit">
-        </form>
-        <br>
-        <form method="post" action="/courses/byKeyword">
-            Show Courses by keyword: 
-              <input type="text" name="keyword" 
-                     placeholder="enter keyword">
-            <input type="submit">
-        </form>
-        <br>
-        <a href="/schedule/show">Show Schedule</a>
-    <% } %>
+<% if (true || loggedIn) {%>  
+    <form method="post" action="/notes/add">
+        Note Title
+        <input type="text" name="title" 
+                placeholder="e.g. COSI Notes">
+        
+        Note Content
+            <input type="text" name="content" 
+                placeholder="Any notes you want to save!">
+        <input type="submit">
+    </form>
+    <br>
 
 
+    <h1>Your Notes</h1>
+    The below are notes belonging to you
+    <hr>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Created</th>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <% for (note of notes) {
+            %>
+        <tr> 
+            <td><%= note.createdAt %></td>
+            <td><%= note.title %></td>
+            <td><%= note.content %></td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+<% } %>
