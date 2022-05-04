@@ -132,7 +132,7 @@ app.post('/notes/add',
       let data = {title, content, userId, createdAt,} // create the data object
       let item = new Notes(data) // create the database object (and test the types are correct)
       await item.save() // save the todo item in the database
-      res.redirect('/index')  // go back to the todo page
+      res.redirect('/')  // go back to the todo page
     } catch (e){
       next(e);
     }
