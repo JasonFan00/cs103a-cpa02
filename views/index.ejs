@@ -15,11 +15,18 @@
         <input type="submit">
     </form>
     <br>
-    <form method="post" action="/notes/filter">
-        Filter If Title Contains String
+    <form method="post" action="/notes/filter/title">
+        Filter For Title Containing String
         <input type="text" name="filterStr" 
                 placeholder="e.g. COSI">
         
+        <input type="submit">
+    </form>
+
+    <form method="post" action="/notes/filter/content">
+        Filter For Content Containing String
+        <input type="text" name="filterStr" 
+                placeholder="e.g. COSI">
         <input type="submit">
     </form>
 
